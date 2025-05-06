@@ -13,10 +13,10 @@
 ### ✅ 2. **Auth System**
 - [ ✅] Create User Schema (name, email, password, address, role)
 - [ ✅] Hash passwords with bcrypt
-- [ ] Create JWT token utils
-- [ ] Implement `/auth/register` and `/auth/login`
-- [ ] Create `authMiddleware` to protect routes
-- [ ] Add role-based auth (`user`, `admin`)
+- [✅ ] Create JWT token utils
+- [✅ ] Implement `/auth/register` and `/auth/login`
+- [✅ ] Create `authMiddleware` to protect routes
+- [ ✅] Add role-based auth (`user`, `admin`)
 
 ---
 
