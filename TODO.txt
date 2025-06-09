@@ -1,0 +1,160 @@
+
+Frontend
+
+Backend
+  -database
+  -listen
+  -import 
+    -Mongoose
+    -CORS
+    -Express
+  -api endpoints
+    -get
+    -POST
+    -PUT
+    -delete
+  -login
+  -register
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 💥 BACKEND (Node.js + Express + MongoDB + JWT)
+
+###  1. **Project Setup**
+- [] Initialize Node project (`npm init -y`)
+- []' Setup Express server
+- [] Connect MongoDB with Mongoose
+- [] Setup `.env` and config
+- [ ] Enable CORS and JSON parsing
+
+---
+
+### ✅ 2. **Auth System**
+- [ ✅] Create User Schema (name, email, password, address, role)
+- [ ✅] Hash passwords with bcrypt
+- [✅ ] Create JWT token utils
+- [✅ ] Implement `/auth/register` and `/auth/login`
+- [✅ ] Create `authMiddleware` to protect routes
+- [ ✅] Add role-based auth (`user`, `admin`)
+
+---
+
+### ✅ 3. **Shop Management**
+- [✅] Create Shop Schema:
+  -✅ name, address, type, geoLocation (lat/lon), ownerId, images, rating, etc.
+- [ ] CRUD APIs for shops:
+  - [ ] `POST /shops` – create (admin only)
+  - [ ] `GET /shops` – list all with filters (city, type, etc.)
+  - [ ] `GET /shops/:id` – get one shop
+  - [ ] `PUT /shops/:id` – update (admin only)
+  - [ ] `DELETE /shops/:id` – delete (admin only)
+
+---
+
+### ✅ 4. **Search & Filters**
+- [ ] Add location-based filtering (city, lat/lon radius)
+- [ ] Implement search by name/type
+- [ ] Add pagination and sorting (by rating, distance)
+
+---
+
+### ✅ 5. **User Features**
+- [ ] Add favorites/saved shops
+- [ ] `POST /users/save-shop/:shopId`
+- [ ] `GET /users/saved-shops`
+
+---
+
+### ✅ 6. **Optional Add-ons**
+- [ ] Shop reviews & ratings
+- [ ] Admin dashboard analytics endpoint
+- [ ] GeoJSON Index for fast location search
+- [ ] Upload shop image URLs or use Cloudinary
+
+---
+
+## ⚡ FRONTEND (React + Tailwind + Axios + React Router)
+
+### ✅ 1. **Project Setup**
+- [ ] Create React project (Vite or CRA)
+- [ ] Setup Tailwind CSS
+- [ ] Setup `react-router-dom` and routing structure
+- [ ] Create API service (Axios wrapper)
+- [ ] Global state (Context API or Recoil)
+
+---
+
+### ✅ 2. **Auth Pages**
+- [ ] Login page (form + POST to `/auth/login`)
+- [ ] Register page (form + POST to `/auth/register`)
+- [ ] Store JWT token in `localStorage`
+- [ ] Setup ProtectedRoute component
+- [ ] Auth context with user data
+
+---
+
+### ✅ 3. **Shop Exploration Pages**
+- [ ] Home Page – Search + Filters
+- [ ] Shops List Page (card/grid view)
+- [ ] Single Shop Page – `/shops/:id`
+  - [ ] Show details, map (optional), save button
+
+---
+
+### ✅ 4. **Admin Dashboard**
+- [ ] Admin can:
+  - [ ] Add a shop
+  - [ ] Edit shop details
+  - [ ] Delete a shop
+  - [ ] See all their shops
+- [ ] Create Admin-only layout and route protection
+
+---
+
+### ✅ 5. **User Features**
+- [ ] User profile page (view saved shops)
+- [ ] Save/unsave shop buttons
+- [ ] Saved shops page
+
+---
+
+### ✅ 6. **UI Polish**
+- [ ] Toast notifications
+- [ ] Loading spinners
+- [ ] Form validations
+- [ ] Mobile responsiveness
+- [ ] Clean Tailwind UI with dark mode toggle (optional)
+
+---
+
+### ✅ 7. **Bonus Features**
+- [ ] Reviews/comments on shops
+- [ ] Ratings display
+- [ ] Share shop link (copy/share)
+- [ ] PWA setup for mobile use
+- [ ] Maps integration (Google Maps / Leaflet)
+- [ ] SEO meta tags for shop pages
+
+---
+
+## 📦 Deployment & Final Touch
+- [ ] Backend: Render / Railway / VPS / EC2
+- [ ] Frontend: Vercel / Netlify
+- [ ] MongoDB: Atlas
+- [ ] Add `.env` config to deployments
+- [ ] Domain setup (`localshops.raghulkannan.me`?)
+/
