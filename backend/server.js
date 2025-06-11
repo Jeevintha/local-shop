@@ -1,21 +1,19 @@
-import express from "express";
-import mongoose from "mongoose";
-import cors from "cors";
-import dotenv from "dotenv";
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { connectDB } from "./src/database/db.js"
 
 const app = express()
+app.use(express.json())
 dotenv.config()
-app.use(cors({
-    origin: ["http//:localhost:5173"]
-    
-}))
+app.use(cors())
 
-app.get('/',(req,res)=>{
-    res.status(200).json({
-        message : "api is working"
-    })
-})
+connectDB()
 
-app.listen(3000,()=>{
-    console.log("server running on port 3000")
+const PORT = process.env.PORT || 3000
+
+
+
+app.listen(PORT,()=>{
+    console.log("Server running on Port:",PORT)
 })
