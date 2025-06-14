@@ -1,6 +1,6 @@
 import {Schema,model} from 'mongoose';
 
-const shopSchema = Schema({
+const shopSchema = new Schema({
     name:{
         type: String,
         required: true
@@ -15,10 +15,16 @@ const shopSchema = Schema({
     },
     product:[{
         type: Schema.Types.ObjectId,
-        ref: 'product',
+        ref: 'Product',
         required: true
-    }]
+    }],
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
 })
+
 
  const Shop = model("Shop",shopSchema)
 export default Shop;

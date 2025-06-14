@@ -7,20 +7,34 @@ const userSchema = Schema({
     },
     password: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     phone: {
-        type: String,
+        type: Number,
         required: true,
         unique: true
     },
+    role :{
+        enum: ['user','owners','admin'],
+        type: String,
+        default: 'user'
+    },
+    bookmark : [{
+        type: Schema.Types.ObjectId,
+        ref: 'Product'
+    }],
     shop: {
-        type : Schema.type.ObjectId,
-        ref: "shop",
-        required: true
+        type : Schema.Types.ObjectId,
+        ref: "Shop"
+    },
+    createdAt :{
+        type: Date,
+        default: Date.now()
     }
+},{
+    timestamps: true
 })
 
 
-export const User = model('User', userSchema)
+ const User = model('User', userSchema)
+ export default User

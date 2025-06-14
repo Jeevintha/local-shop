@@ -1,36 +1,4 @@
 
-Frontend
-
-Backend
-  -database
-  -listen
-  -import 
-    -Mongoose
-    -CORS
-    -Express
-  -api endpoints
-    -get
-    -POST
-    -PUT
-    -delete
-  -login
-  -register
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## 💥 BACKEND (Node.js + Express + MongoDB + JWT)
 
@@ -43,13 +11,13 @@ Backend
 
 ---
 
-### ✅ 2. **Auth System**
-- [ ✅] Create User Schema (name, email, password, address, role)
-- [ ✅] Hash passwords with bcrypt
-- [✅ ] Create JWT token utils
-- [✅ ] Implement `/auth/register` and `/auth/login`
-- [✅ ] Create `authMiddleware` to protect routes
-- [ ✅] Add role-based auth (`user`, `admin`)
+###  2. **Auth System**
+- [ ] Create User Schema (name, email, password, address, role)
+- [ ] Hash passwords with bcrypt
+- [] Create JWT token utils
+- [] Implement `/auth/register` and `/auth/login`
+- [ ] Create `authMiddleware` to protect routes
+- [ ] Add role-based auth (`user`, `admin`)
 
 ---
 

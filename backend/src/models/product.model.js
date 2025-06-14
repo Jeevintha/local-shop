@@ -6,7 +6,8 @@ const productSchema = Schema({
         required: true
     },
     shop: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'Shop',
         required: true
     },
     stock: {
