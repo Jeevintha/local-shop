@@ -5,6 +5,11 @@ import { connectDB } from "./src/database/db.js"
 
 import bcrypt from "bcryptjs"
 import User from './src/models/user.model.js'
+import Shop from './src/models/shop.model.js'
+
+import authRouter from './src/route/auth.routes.js'
+import shopRouter from './src/route/shop.route.js'
+import userRouter from './src/route/user.route.js'
 
 const app = express()
 app.use(express.json())
@@ -15,56 +20,39 @@ connectDB()
 
 const PORT = process.env.PORT || 3000
 
+app.use('/auth', authRouter)
+app.use('/shop', shopRouter)
+app.use('/user', userRouter)
 
-app.post('/login',async ( req, res )=>{
-    const {phone,password} = req.body
-    if(!phone || !password){
-        res.status(400).json({
-            message: "Phone or Password are required"
-        })
-    }
 
-    const user = await User.findOne({
-        phone : phone
-    })
-    if(!user){
-        res.status(400).json({
-            message: "user not found"
-        })
-    }
-
-    const isAuthorized = await bcrypt.compare(password, user.password)
-
-    if(!isAuthorized){
-        res.status(400).json({
-            messsage: "Invalid Credentials"
-        })
-    }
+app.get('/all',async(req,res)=>{
+    try {
+        const shops = await Shop.find()
     res.status(200).json({
-        message: "Login Successfull "
+        message: "Fetched shops successfully",
+        data: shops
     })
+    } catch (error) {
+        res.status(500).json({
+            message: `Error : ${err}`
+        })
+    }
 })
 
-
-
-
-app.post('/register', async(req,res)=>{
-    const { username, password, phone } = req.body
-
-    const hashedPassword = await bcrypt.hash(password,10)
-
-    const newUser = await User.create({
-        username: username,
-        password: hashedPassword,
-        phone: phone
+app.get('/users',async(req,res)=>{
+    try{
+        const users = await User.find()
+    res.status(200).json({
+        message: "Fetched users successfully",
+        data: users
     })
-    res.status(201).json({
-        message: "User registration successful",
-        user: newUser
-    })
+    }
+    catch (error) {
+        res.status(500).json({
+            message: `Error : ${err}`
+        })
+    }
 })
-
-
 
 app.listen(PORT,()=>{
     console.log("Server running on Port:",PORT)
