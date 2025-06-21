@@ -12,8 +12,8 @@ export const createShop = async(req, res)=>{
 
     const shop = await Shop.create({
         name : name,
-        address : address,
-        phone : phone
+        phone : phone,
+        address : address
     })
 
     res.status(201).json({
@@ -22,8 +22,23 @@ export const createShop = async(req, res)=>{
     })
 
   } catch (error) {
+    console.log(error)
     res.status(500).json({
         message : "Internal Server Error"
     })
   }
+}
+
+export const getAllShop = async(req,res)=>{
+      try {
+        const shops = await Shop.find()
+        res.status(200).json({
+          message: "Shop received successfully",
+          data: shops
+        })
+      } catch (error) {
+        res.status(500).json({
+           message: "Internal Server Error"
+        })
+      }
 }

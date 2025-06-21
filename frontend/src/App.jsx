@@ -1,17 +1,27 @@
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+import Home from "./pages/Home"
+import ShopCreate from "./pages/shop/ShopCreate"
+import Shops from "./pages/shop/Shops"
+import Register from "./pages/auth/Register"
+import Users from "./pages/admin/Users"
+import UserDetail from "./pages/admin/UserDetail"
 
-const App = () => {
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-blue-400">
-      <h1 className="text-white font-extrabold text-2xl">Local Shop</h1>
-      <div>
-        <div>
-          <input type="text" placeholder="name" />
-          <input type="text" placeholder="phone" />
-          <input type="text" placeholder="address" />
-          <button onClick={createShop}>Create</button>
-        </div>
-      </div>
-    </div>
+const App = ()=>{
+  return(
+    <>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}  />
+        <Route path="/shop/create" element={<ShopCreate />}  />
+        <Route path="/shops" element={<Shops />}  />
+        <Route path="/register" element={<Register />}  />
+        <Route path="/users" element={<Users />}  />
+        <Route path="/user/detail/:id" element={<UserDetail />}  />
+
+
+      </Routes>
+    </BrowserRouter>
+    </>
   )
 }
 
