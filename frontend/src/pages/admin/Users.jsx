@@ -15,6 +15,11 @@ const Users = ()=>{
         }
      }
         const deleteUser = async(id)=>{
+
+            const confirmDelete = confirm("Are you sure you want to delete this user?")
+            if(!confirmDelete){
+                return
+            }
             const rawResponse = await fetch("http://localhost:3000/user/delete/"+id, {
                 "method" : "delete"
             })

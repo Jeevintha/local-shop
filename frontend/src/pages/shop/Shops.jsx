@@ -3,12 +3,18 @@ import { useEffect, useState } from "react"
 const Shops = () => {
     const [shops, setShops] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
+    const fetchData = async () => {
+        try {
             const rawResponse = await fetch("http://localhost:3000/shop/all");
             const response = await rawResponse.json();
             setShops(response.data);
-        };
+        } catch (error) {
+            console.log("error : ",error)
+            alert(error)
+        }
+       
+    };
+    useEffect(() => {
         fetchData();
     }, []);
 

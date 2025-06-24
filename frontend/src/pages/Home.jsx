@@ -1,7 +1,7 @@
 const Home = () => {
     return(
         <div>
-            <div className="bg-blue-400 text-white flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center">
                 <h1>Welcome to Local Shop</h1>
                 <h4>Connect directly with local vendors</h4>
                 <div>
