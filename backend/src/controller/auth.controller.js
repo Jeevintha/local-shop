@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-
+import jwt from 'jsonwebtoken'
 import User from '../models/user.model.js'
 
 export const registerHandler = async(req,res)=>{
@@ -29,16 +29,16 @@ export const loginHandler = async ( req, res )=> {
     try{
        const {phone,password} = req.body
        if(!phone || !password){
-           res.status(400).json({
+            return res.status(400).json({
                message: "Phone or Password are required"
            })
        }
-   
+
        const user = await User.findOne({
            phone : phone
        })
        if(!user){
-           res.status(400).json({
+          return res.status(400).json({
                message: "user not found"
            })
        }
@@ -46,17 +46,25 @@ export const loginHandler = async ( req, res )=> {
        const isAuthorized = await bcrypt.compare(password, user.password)
    
        if(!isAuthorized){
-           res.status(400).json({
+          return res.status(400).json({
                messsage: "Invalid Credentials"
            })
        }
+
+       const token = jwt.sign(
+        {id: user._id},
+        process.env.JWT_SECRET,
+         {expiresIn: "1h"}
+        )
+
        res.status(200).json({
-           message: "Login Successfull "
+           message: "Login Successfull",
+           token : token
        })
    }
        catch (error) {
            res.status(500).json({
-               message: `Error : ${err}`
+               message: `Error : ${error}`
            })
        }
     }

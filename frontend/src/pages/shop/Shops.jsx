@@ -5,7 +5,11 @@ const Shops = () => {
 
     const fetchData = async () => {
         try {
-            const rawResponse = await fetch("http://localhost:3000/shop/all");
+            const rawResponse = await fetch("http://localhost:3000/shop/all", {
+                headers: {
+                    authorization : `Bearer ${localStorage.getItem("token")}`
+                }
+            });
             const response = await rawResponse.json();
             setShops(response.data);
         } catch (error) {

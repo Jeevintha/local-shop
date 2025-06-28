@@ -1,4 +1,5 @@
 import Shop from "../models/shop.model.js"
+import jwt from "jsonwebtoken"
 
 export const createShop = async(req, res)=>{
   try {

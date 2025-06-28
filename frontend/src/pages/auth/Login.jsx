@@ -1,38 +1,40 @@
 import { useState } from "react"
 
-const Register = ()=>{
+const Login = ()=>{
 
-    const [username , setUsername] = useState("")
-    const [password , setPassword] = useState("")
     const [phone , setPhone] = useState("")
+    const [password , setPassword] = useState("")
 
-    const handleRegister = async()=>{
-        const rawResponse = await fetch("http://localhost:3000/auth/register",{
+    const handleLogin = async()=>{
+        const rawResponse = await fetch("http://localhost:3000/auth/login",{
             method: "post",
             headers: {
                 "content-type": "application/json"
             },
             body: JSON.stringify({
-                username,password,phone
+                phone : phone,
+                password : password
             })
         })
         const response = await rawResponse.json()
         alert(response.message)
-        window.location.href = "/users"
+        localStorage.removeItem("token")
+        localStorage.setItem("token",response.token)
+        window.location.href = "/shops"
     }
 
     return(
         <div className="flex items-center justify-center min-h-screen bg-blue-100">
             <div className="bg-white p-8 rounded-lg shadow-lg w-96">
                 <h1 className="text-2xl font-extrabold text-center text-gray-800">Local Shop</h1>
-                <h4 className="text-blue-500 text-center mb-6">Registration Page</h4>
+                <h4 className="text-blue-500 text-center mb-6">Login Page</h4>
 
                 <div className="flex flex-col space-y-4">
                     <input 
-                        type="text" 
-                        placeholder="Username" 
-                        className="border border-gray-300 p-2 rounded focus:outline-none bg-gray-50 focus:ring-2 focus:ring-blue-500" 
-                        onChange={(e)=>{setUsername(e.target.value)}} 
+                        type="number" 
+                        placeholder="Phone" 
+                        className="border border-gray-300 p-2 rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                        onChange={(e)=>{setPhone(e.target.value)}} 
                     />
                     <input 
                         type="password" 
@@ -40,23 +42,17 @@ const Register = ()=>{
                         className="border border-gray-300 p-2 rounded focus:outline-none bg-gray-50 focus:ring-2 focus:ring-blue-500" 
                         onChange={(e)=>{setPassword(e.target.value)}} 
                     />
-                    <input 
-                        type="number" 
-                        placeholder="Phone" 
-                        className="border border-gray-300 p-2 rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                        onChange={(e)=>{setPhone(e.target.value)}} 
-                    />
                     <button 
-                        onClick={handleRegister} 
+                        onClick={handleLogin} 
                         className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer transition duration-200"
                     >
-                        Register
+                        Login
                     </button>
-                    <div className="text-center"><a href="/login" className="text-blue-600 cursor-pointer">Already have a account?</a></div>
+                    <div  className="text-center"><a className=" text-blue-600 cursor-pointer" href="/register">Sign up for Local Shop</a></div>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Register
+export default Login
