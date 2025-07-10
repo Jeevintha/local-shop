@@ -8,7 +8,7 @@ const Users = ()=>{
     
     async function fetchUsers(){
         try {
-         const rawResponse = await fetch("http://localhost:3000/user/all",{
+         const rawResponse = await fetch(import.meta.env.VITE_API_URL+"/user/all",{
             headers : {
                 "authorization" : `Bearer ${token}`
             }
@@ -26,7 +26,7 @@ const Users = ()=>{
             if(!confirmDelete){
                 return
             }
-            const rawResponse = await fetch("http://localhost:3000/user/delete/"+id, {
+            const rawResponse = await fetch(import.meta.env.VITE_API_URL+"/user/delete/"+id, {
                 "method" : "delete"
             })
             const response = await rawResponse.json()

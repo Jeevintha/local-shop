@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast"
+import useAuthStore from "../../store/authStore";
 
 const Shops = () => {
     const [shops, setShops] = useState([]);
-
+    const { token } = useAuthStore()
     const fetchData = async () => {
         try {
-            const rawResponse = await fetch("http://localhost:3000/shop/all", {
+            const rawResponse = await fetch(import.meta.env.VITE_API_URL+"/shop/all", {
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("token")}`
+                    authorization: `Bearer ${token}`
                 }
             });
             const response = await rawResponse.json();
             setShops(response.data);
+            toast.success(response.message);
         } catch (error) {
             console.log("error : ", error);
         }

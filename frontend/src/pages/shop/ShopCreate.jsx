@@ -1,7 +1,9 @@
 import {  useState } from "react"
 import { toast } from "react-hot-toast"
+import useAuthStore from "../../store/authStore"
 
 const ShopCreate = () => {
+  const { token } = useAuthStore()
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [address, setAddress] = useState("")
@@ -9,11 +11,11 @@ const ShopCreate = () => {
 
   const createShop = async () => {
    try{
-     const response = await fetch("http://localhost:3000/shop/create", {
+     const response = await fetch(import.meta.env.VITE_API_URL+"/shop/create", {
       method: "post",
       headers: {
         "content-type": "application/json",
-        "authorization" : `Bearer ${localStorage.getItem("token")}`
+        "authorization" : `Bearer ${token}`
       },
       body: JSON.stringify({
         name: name,

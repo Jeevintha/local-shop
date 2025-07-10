@@ -10,7 +10,7 @@ const Login = ()=>{
 
     const handleLogin = async () => {
         try {
-            const rawResponse = await fetch("http://localhost:3000/auth/login", {
+            const rawResponse = await fetch(import.meta.env.VITE_API_URL+"/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

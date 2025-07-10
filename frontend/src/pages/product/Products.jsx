@@ -6,7 +6,7 @@ const Products = () => {
 
   const fetchProducts = async () => {
     try {
-      const rawResponse = await fetch("http://localhost:3000/product/all");
+      const rawResponse = await fetch(import.meta.env.VITE_API_URL+"/product/all");
       const response = await rawResponse.json();
       setProducts(response.data);
     } catch (error) {
@@ -20,7 +20,7 @@ const Products = () => {
       const confirmDelete = window.confirm("Are you sure you want to delete this product?");
       if (!confirmDelete) return;
 
-      const rawResponse = await fetch(`http://localhost:3000/product/delete/${id}`, {
+      const rawResponse = await fetch(`${import.meta.env.VITE_API_URL}/product/delete/${id}`, {
         method: "DELETE",
       });
       const response = await rawResponse.json();

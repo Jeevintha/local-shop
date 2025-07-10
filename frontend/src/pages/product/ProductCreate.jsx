@@ -15,7 +15,7 @@ const ProductCreate = () => {
             return;
         }
 
-      const rawResponse = await fetch("http://localhost:3000/product/create",{
+      const rawResponse = await fetch(import.meta.env.VITE_API_URL+"/product/create",{
         method: "post",
         headers: {
           "content-type" : "application/json"

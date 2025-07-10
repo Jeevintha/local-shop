@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 useEffect(()=>{
      async function fetchUser(){
         setLoading(true)
-        const rawResponse = await fetch('http://localhost:3000/user/'+id)
+        const rawResponse = await fetch(import.meta.env.VITE_API_URL+'/user/'+id)
         const response = await rawResponse.json()
         console.log(response.message)
         setUser(response.data)

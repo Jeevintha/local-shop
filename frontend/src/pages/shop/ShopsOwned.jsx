@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { toast } from "react-hot-toast"
+import useAuthStore from "../../store/authStore"
 
 const ShopsOwned = () => {
+    const { token } = useAuthStore()
     const [shops, setShops] = useState([])
     const [editShop, setEditShop] = useState(null)
     const [editForm, setEditForm] = useState({
@@ -13,9 +15,9 @@ const ShopsOwned = () => {
     })
 
     const fetchOwnedShops = async () => {
-        const raw = await fetch("http://localhost:3000/shop/owned", {
+        const raw = await fetch(import.meta.env.VITE_API_URL+"/shop/owned", {
             headers: {
-                "authorization": `Bearer ${localStorage.getItem("token")}`
+                "authorization": `Bearer ${token}`
             }
         })
         const response = await raw.json()
@@ -33,10 +35,10 @@ const ShopsOwned = () => {
                 toast.error("Shop Deletion Cancelled")
                 return
             }
-            const res = await fetch(`http://localhost:3000/shop/${id}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/shop/${id}`, {
                 method: 'DELETE',
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("token")}`
+                    authorization: `Bearer ${token}`
                 }
             })
             const data = await res.json()
@@ -60,11 +62,11 @@ const ShopsOwned = () => {
 
     const handleUpdate = async () => {
         try {
-            const res = await fetch(`http://localhost:3000/shop/${editShop}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/shop/${editShop}`, {
                 method: 'PUT',
                 headers: {
                     "Content-Type": "application/json",
-                    authorization: `Bearer ${localStorage.getItem("token")}`
+                    authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify(editForm)
             })
