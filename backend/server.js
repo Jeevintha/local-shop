@@ -12,7 +12,9 @@ import productRouter from './src/route/product.route.js'
 const app = express()
 app.use(express.json())
 dotenv.config()
-app.use(cors())
+app.use(cors({
+    origin : process.env.FRONTEND_URL
+}))
 
 connectDB()
 
