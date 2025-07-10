@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react"
+import toast from 'react-hot-toast'
+import useAuthStore from "../../store/authStore"
 
 const Users = ()=>{
-
+    const { token } = useAuthStore()
     const [users, setUsers] = useState([])
     
     async function fetchUsers(){
         try {
-         const rawResponse = await fetch("http://localhost:3000/user/all")
+         const rawResponse = await fetch("http://localhost:3000/user/all",{
+            headers : {
+                "authorization" : `Bearer ${token}`
+            }
+         })
          const response = await rawResponse.json()
          console.log(response.message)
          setUsers(response.data)
@@ -24,7 +30,7 @@ const Users = ()=>{
                 "method" : "delete"
             })
             const response = await rawResponse.json()
-            alert(response.message)
+            toast.success(response.message)
             fetchUsers()
 
         }

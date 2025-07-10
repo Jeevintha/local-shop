@@ -59,7 +59,13 @@ export const loginHandler = async ( req, res )=> {
 
        res.status(200).json({
            message: "Login Successfull",
-           token : token
+           token : token,
+           user : {
+                id : user._id,
+                username : user.username,
+                role : user.role,
+                phone : user.phone
+           }
        })
    }
        catch (error) {

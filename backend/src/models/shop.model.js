@@ -3,7 +3,8 @@ import {Schema,model} from 'mongoose';
 const shopSchema = new Schema({
     name:{
         type: String,
-        required: true
+        required: true,
+        unique : true
     },
     address:{
         type: String,
@@ -11,7 +12,12 @@ const shopSchema = new Schema({
     },
     phone:{
         type: String,
-        required: true
+        required: true,
+        unique : true
+    },
+    image:{
+        type: String,
+        default: 'https://placehold.co/300'
     },
     product:[{
         type: Schema.Types.ObjectId,

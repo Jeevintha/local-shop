@@ -35,8 +35,8 @@ export const getProduct = async(req,res)=>{
 
 export const createProduct = async(req,res)=>{
     try {
-        const {name,shop,stock,price} = req.body
-        if(!name ||  !stock || !price){
+        const {name, shop, stock, price, image} = req.body
+        if(!name ||  !stock || !price || !image ){
             res.status(400).json({
                 message : "Name, Stock and price required"
             })
@@ -44,7 +44,8 @@ export const createProduct = async(req,res)=>{
         const product = await Product.create({
             name : name,
             stock : stock,
-            price : price
+            price : price,
+            image : image
         })
         res.status(201).json({
             message : "Product created successfully",

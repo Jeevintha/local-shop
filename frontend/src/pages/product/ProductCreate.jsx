@@ -6,6 +6,7 @@ const ProductCreate = () => {
   const [name, setName] = useState("")
   const [stock, setStock] = useState(0)
   const [price, setPrice] = useState(0)
+  const [image, setImage] = useState("")
 
     const createProduct = async()=>{
 
@@ -22,7 +23,8 @@ const ProductCreate = () => {
         body: JSON.stringify({
           name : name,
           stock : stock,
-          price : price
+          price : price,
+          image : image
         })
       })
       const response = await rawResponse.json()
@@ -41,8 +43,9 @@ const ProductCreate = () => {
             <FormInput setFn={setName} placeholder="Product Name" />
             <FormInput setFn={setStock} type="Number" placeholder="Stock Available" />
             <FormInput setFn={setPrice} type="Number" placeholder="Product Price" />
+            <FormInput setFn={setImage} placeholder="Image Url" />
             <button 
-                onClick={createProduct} 
+                onClick={createProduct}
                 className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer transition duration-200"
             >
                 Create Product

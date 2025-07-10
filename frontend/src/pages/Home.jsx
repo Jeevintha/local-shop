@@ -1,7 +1,10 @@
-import React from 'react';
+import useAuthStore from './../store/authStore'
 import { ShoppingBag, Shield, ArrowRight, MapPin, Heart } from 'lucide-react';
 
 const SimpleMarketplace = () => {
+
+    const { user } = useAuthStore()
+
     const categories = [
         {
             title: "Fresh Produce",
@@ -54,8 +57,8 @@ const SimpleMarketplace = () => {
             <section className="bg-gradient-to-b from-blue-50 to-white py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                        Discover Amazing
-                        <span className="text-blue-600 block">Local Products</span>
+                        Discover Amazing {user.username}
+                        <span className="text-blue-600 block">Local Products </span>
                     </h1>
                     <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                         Connect with local vendors and discover unique products in your community.

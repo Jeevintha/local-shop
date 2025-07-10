@@ -1,26 +1,38 @@
 import { useState } from "react"
+import toast from "react-hot-toast"
+import useAuthStore from "../../store/authStore"
 
 const Login = ()=>{
 
     const [phone , setPhone] = useState("")
     const [password , setPassword] = useState("")
+    const { setUser, setToken } = useAuthStore()
 
-    const handleLogin = async()=>{
-        const rawResponse = await fetch("http://localhost:3000/auth/login",{
-            method: "post",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify({
-                phone : phone,
-                password : password
-            })
-        })
-        const response = await rawResponse.json()
-        alert(response.message)
-        localStorage.removeItem("token")
-        localStorage.setItem("token",response.token)
-        window.location.href = "/shops"
+    const handleLogin = async () => {
+        try {
+            const rawResponse = await fetch("http://localhost:3000/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    phone: phone,
+                    password: password
+                })
+            });
+            const response = await rawResponse.json();
+            if (!rawResponse.ok) {
+                throw new Error(response.message || "Login failed");
+            }
+            toast.success(response.message);
+            setUser(response.user);
+            setToken(response.token);
+            setTimeout(() => {
+                window.location.href = "/shops";
+            }, 1500);
+        } catch (error) {
+            toast.error(error.message);
+        }
     }
 
     return(
@@ -43,7 +55,7 @@ const Login = ()=>{
                         onChange={(e)=>{setPassword(e.target.value)}} 
                     />
                     <button 
-                        onClick={handleLogin} 
+                        onClick={handleLogin}
                         className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer transition duration-200"
                     >
                         Login
