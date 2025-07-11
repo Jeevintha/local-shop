@@ -1,5 +1,5 @@
-import Shop from "../models/shop.model"
-import Product from "../models/product.model"
+import Shop from "../models/shop.model.js"
+import Product from "../models/product.model.js"
 
 const ownerCheck = async(req,res,next) => {
     const { shopId, productId } = req.body;
