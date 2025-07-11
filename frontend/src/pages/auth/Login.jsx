@@ -10,6 +10,7 @@ const Login = ()=>{
 
     const handleLogin = async () => {
         try {
+            toast.loading("Logging in...");
             const rawResponse = await fetch(import.meta.env.VITE_API_URL+"/auth/login", {
                 method: "POST",
                 headers: {
@@ -24,6 +25,7 @@ const Login = ()=>{
             if (!rawResponse.ok) {
                 throw new Error(response.message || "Login failed");
             }
+            toast.dismiss();
             toast.success(response.message);
             setUser(response.user);
             setToken(response.token);
@@ -32,6 +34,7 @@ const Login = ()=>{
             }, 1500);
         } catch (error) {
             toast.error(error.message);
+            toast.dismiss();
         }
     }
 

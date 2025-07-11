@@ -54,7 +54,7 @@ export const loginHandler = async ( req, res )=> {
        const token = jwt.sign(
         {id: user._id},
         process.env.JWT_SECRET,
-         {expiresIn: "1h"}
+         {expiresIn: "1d"}
         )
 
        res.status(200).json({

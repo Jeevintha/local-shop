@@ -11,6 +11,5 @@ router.get("/owned", protect, ShopsOwned)
 router.get("/:id", protect, getOneShop)
 router.put("/:id", protect, updateShop)
 router.delete("/:id", protect, deleteShop)
-router.post('/create/many', createManyShops);
 
 export default router;

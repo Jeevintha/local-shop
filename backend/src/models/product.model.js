@@ -5,9 +5,13 @@ const productSchema = Schema({
         type: String,
         required: true
     },
+    description :{
+        type : String
+    },
     shop: {
         type: Schema.Types.ObjectId,
-        ref: 'Shop'
+        ref: 'Shop',
+        required : true
     },
     stock: {
         type: Number,
